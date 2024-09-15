@@ -29,6 +29,7 @@ import Network
 ///     }
 /// })
 /// ```
+
 public class FTPClient {
     private let credentials: FTPCredentials
     private let remotePath: String
@@ -243,13 +244,17 @@ public class FTPClient {
                 throw FTPError.cancelled
             }
             
-            let data = try fileHandle.read(upToCount: bufferSize)
-            if let data = data, !data.isEmpty {
-                try await sendData(data: data, over: dataConnection)
-                progress.completedUnitCount += Int64(data.count)
-                progressHandler(progress)
+            if #available(macOS 10.15.4, *) {
+                let data = try fileHandle.read(upToCount: bufferSize)
+                if let data = data, !data.isEmpty {
+                    try await sendData(data: data, over: dataConnection)
+                    progress.completedUnitCount += Int64(data.count)
+                    progressHandler(progress)
+                } else {
+                    break
+                }
             } else {
-                break
+                fatalError("SwiftFTPClient requires macOS 10.15.4 or later.")
             }
         }
         
@@ -364,9 +369,7 @@ public class FTPClient {
         controlConnection?.cancel()
         controlConnection = nil
     }
-}
-
-extension FTPClient {
+    
     private actor SafeCompletionHandler<T> {
         private var hasCompleted = false
         

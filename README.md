@@ -2,6 +2,15 @@
 
 SwiftFTPClient is a modern, Swift-based FTP client library that leverages the `Network` framework for efficient and reliable FTP operations. It provides an easy-to-use interface for connecting to FTP servers, uploading files and data, and managing transfers with progress tracking.
 
+## Requirements
+
+- macOS 10.15.4 or later
+- iOS 13.0 or later
+- tvOS 13.0 or later
+- watchOS 6.0 or later
+
+Note: While the package specifies macOS 10.15 as the minimum version, certain functionalities require macOS 10.15.4 or later. The library will check for this at runtime and fail gracefully if the requirement is not met.
+
 ## Features
 
 - Asynchronous API using Swift concurrency
@@ -18,14 +27,14 @@ SwiftFTPClient is a modern, Swift-based FTP client library that leverages the `N
 You can add SwiftFTPClient to your project using Swift Package Manager. In Xcode, go to File > Swift Packages > Add Package Dependency and enter the repository URL:
 
 ```
-https://github.com/yourusername/SwiftFTPClient.git
+https://github.com/fenixkim/SwiftFTPClient.git
 ```
 
 Alternatively, you can add it to your `Package.swift` file:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/yourusername/SwiftFTPClient.git", from: "1.0.0")
+    .package(url: "https://github.com/fenixkim/SwiftFTPClient.git", from: "1.0.0")
 ]
 ```
 
