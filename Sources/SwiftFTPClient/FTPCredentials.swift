@@ -17,4 +17,11 @@ public struct FTPCredentials {
     let username: String
     /// The password for authentication.
     let password: String
+    
+    public init(host: String, port: UInt16, username: String, password: String) {
+        self.host = host
+        self.port = port
+        self.username = username
+        self.password = password
+    }
 }

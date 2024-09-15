@@ -81,7 +81,7 @@ public class FTPClient {
     
     // MARK: - Private Methods
     
-    func upload(
+    public func upload(
         files: [FTPUploadable],
         progressHandler: @escaping (Progress) -> Void
     ) async throws {
